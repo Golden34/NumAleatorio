@@ -13,15 +13,21 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public int ini = 1;
+    public int topex = 10;
+    public int topey = 10;
+    public int ini = 15;
     public int fin = 72;
     public int adi;
-    public int tv[10,10];
+    public TextView tv[];
+    public int total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        total = (topey*topex+1);
+        tv = new TextView[total];
 
         /*
         TextView titleView = new TextView(this);
@@ -53,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
 //        LinearLayout layout_x = findViewById(R.id.dyn_layoutX);
 
         LinearLayout Layout_XML = findViewById(R.id.xml_layout);
-        for (int y = 0; y < 10; y++) {
+        for (int y = 0; y < topey; y++) {
             LinearLayout layout_y = GeneraLinearLayout(LinearLayout.HORIZONTAL);
-            for (int x = 0; x < 10; x++) {
+            for (int x = 0; x < topex; x++) {
                 LinearLayout layout_x = GeneraLinearLayout(LinearLayout.VERTICAL);
                 layout_x.addView(GeneraCaja(y, x));
                 layout_y.addView(layout_x);
@@ -79,14 +85,24 @@ public class MainActivity extends AppCompatActivity {
         return LL;
     }
     public TextView GeneraCaja(int ty, int tx){
+        int posi = (ty*10 + tx + 1);
         TextView text = new TextView(this);
-        tv[ty,tv] = text.getId() ;
-        text.setText("" + i);
+        tv[posi] = text;
+        text.setText(" " + posi + " ");
         text.setTextSize(12);
         text.setGravity(Gravity.LEFT);
         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         text.setBackgroundColor(R.color.colorPrimary);
         return text;
+    }
+
+    // este View no es el pulsado, por ahora, es la prueba
+    public void bPulsado2(View view) {
+        for (int z = 1; z < total; z++) {
+            TextView text = (tv[z]);
+            if (z < ini) text.setVisibility(View.INVISIBLE);
+            if (z > fin) text.setVisibility(View.INVISIBLE);
+        }
     }
 
 
