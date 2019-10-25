@@ -77,14 +77,10 @@ public class MainActivity extends AppCompatActivity {
             LL.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 2F));
-            LL.setBackgroundColor(colorAccent);
-            LL.setPadding(10, 10, 10, 10);
         }
-
-
         return LL;
     }
-    @SuppressLint("ResourceAsColor")
+
     public TextView GeneraCaja(int ty, int tx){
         int posi = (ty*10 + tx);
         String cero;
@@ -116,24 +112,41 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTick(TextView Caja_Tocada){
         String sNumero_tocado = Caja_Tocada.getText().toString();
+
         int numero_tocado = Integer.parseInt(sNumero_tocado);
+
         if (numero_tocado == numero_adivinar){
             Toast.makeText(this,"Has acertado el numero: " + sNumero_tocado, Toast.LENGTH_SHORT).show();
+            // Quita todas las cajas excepto el numero ACERTADO!!
             numero_inferior = numero_tocado;
             numero_superior = numero_tocado;
             OcultarCajasSobrantes();
-        } else if (numero_tocado < numero_adivinar){
+        }
+        else if (numero_tocado < numero_adivinar){
+            // Calcula el nuevo tope/limite inferior y le suma
+            // (+) 1 porque ese numero le ha fallado y ya no vale,
+            // por eso se excluye del tope inferior, sumando uno.
             numero_inferior = numero_tocado + 1;
             OcultarCajasSobrantes();
-        } else if (numero_tocado > numero_adivinar){
+        }
+        else if (numero_tocado > numero_adivinar){
+            // Calcula el nuevo tope/limite superior y le resta
+            // (-) 1 porque ese numero le ha fallado y ya no vale,
+            // por eso se excluye del tope superior, restando uno.
             numero_superior = numero_tocado - 1;
             OcultarCajasSobrantes();
         }
     }
 
     public void OcultarCajasSobrantes(){
-        for (int z = 0; z < total_numeros; z++) {
-            if (z < numero_inferior || z > numero_superior) matriz_textViews[z].setVisibility(View.INVISIBLE);
+        //Oculta las cajas de los numeros que por lógica ya no pueden ser elegidos
+        for (int num_no_sera_visible = 0;
+                 num_no_sera_visible < total_numeros;
+                 num_no_sera_visible++)
+        {
+            if (num_no_sera_visible < numero_inferior || num_no_sera_visible > numero_superior) {
+                matriz_textViews[num_no_sera_visible].setVisibility(View.INVISIBLE);
+            }
         }
     }
     /*
