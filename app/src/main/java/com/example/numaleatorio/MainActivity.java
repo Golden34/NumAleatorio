@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int tope_layout_x = 10;
     public int tope_layout_y = 10;
-    public int numero_primero = 34;
-    public int numero_ultimo = 83;
+    public int numero_primero = 0;
+    public int numero_ultimo = 99;
     public int numero_inferior = numero_primero;
     public int numero_superior = numero_ultimo;
     public int numero_adivinar = 57;
@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     // este View no es el pulsado, por ahora, es la prueba
     public void bPulsado2(View view) {
-        for (int z = 0; z < total_numeros; z++) {
-            if (z < numero_inferior || z > numero_superior) matriz_textViews[z].setVisibility(View.INVISIBLE);
-        }
+        OcultarCajasSobrantes();
     }
 
     public void onTick(TextView Caja_Tocada){
@@ -121,13 +119,23 @@ public class MainActivity extends AppCompatActivity {
         int numero_tocado = Integer.parseInt(sNumero_tocado);
         if (numero_tocado == numero_adivinar){
             Toast.makeText(this,"Has acertado el numero: " + sNumero_tocado, Toast.LENGTH_SHORT).show();
+            numero_inferior = numero_tocado;
+            numero_superior = numero_tocado;
+            OcultarCajasSobrantes();
         } else if (numero_tocado < numero_adivinar){
-
+            numero_inferior = numero_tocado + 1;
+            OcultarCajasSobrantes();
         } else if (numero_tocado > numero_adivinar){
-
+            numero_superior = numero_tocado - 1;
+            OcultarCajasSobrantes();
         }
     }
 
+    public void OcultarCajasSobrantes(){
+        for (int z = 0; z < total_numeros; z++) {
+            if (z < numero_inferior || z > numero_superior) matriz_textViews[z].setVisibility(View.INVISIBLE);
+        }
+    }
     /*
         En el Onclick tiene que ver si ha acertado:
         Si sí ha acertado -->  intent Festejos
