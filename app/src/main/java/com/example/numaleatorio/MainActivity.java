@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     public int topex = 10;
     public int topey = 10;
-    public int ini = 15;
-    public int fin = 72;
-    public int adi;
+    public int ini = 34;
+    public int fin = 83;
+    public int adi = 57;
     public TextView tv[];
     public int total;
     int colorRed;
@@ -98,32 +98,28 @@ public class MainActivity extends AppCompatActivity {
         text.setBackgroundColor(colorRed);
         text.setTextColor(colorYel);
         text.setPadding(2, 2, 2, 2);
-        text.setOnClickListener(
-                View.OnClickListener()
-                onClick(text));
-//                    public void onClick(View v)
-//                    {
-//                        //String sNum = (TextView)v.getTag();
-//                    }
-//                }
-//        );
+        text.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onTick((TextView)v);
+            }
+        });
 
         tv[posi] = text;
-        onClick(text);
+
         return text;
     }
 
     // este View no es el pulsado, por ahora, es la prueba
     public void bPulsado2(View view) {
-        for (int z = 1; z < total; z++) {
-            TextView text = (tv[z]);
+        for (int z = 0; z < total; z++) {
             if (z < ini || z > fin) tv[z].setVisibility(View.INVISIBLE);
-
         }
     }
 
-    public void onClick(TextView Caja_Tocada){
-        Toast.makeText(this," ha tocado el numero ", Toast.LENGTH_LONG);
+    public void onTick(TextView Caja_Tocada){
+        String sNum = Caja_Tocada.getText().toString();
+        Toast.makeText(this,"Ha tocado el numero: " + sNum, Toast.LENGTH_SHORT).show();
+
     }
 
     /*
