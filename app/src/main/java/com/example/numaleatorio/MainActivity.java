@@ -2,16 +2,12 @@ package com.example.numaleatorio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import static com.example.numaleatorio.R.color.colorAccent;
 import static com.example.numaleatorio.R.color.colorBurdeos;
 import static com.example.numaleatorio.R.color.colorYellow;
 
@@ -39,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         total_numeros = (tope_layout_y * tope_layout_x);
         matriz_textViews = new TextView[total_numeros];
+
+        double nAle = Math.random()*100;
+        numero_adivinar = (int)nAle;
 
     }
 
