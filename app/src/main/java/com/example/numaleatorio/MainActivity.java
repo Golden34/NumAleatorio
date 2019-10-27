@@ -1,18 +1,13 @@
 package com.example.numaleatorio;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +17,9 @@ import static com.example.numaleatorio.R.color.colorYellow;
 public class MainActivity extends AppCompatActivity {
 
     public int tope_layout_x = 10;
-    public int tope_layout_y = 10;
+    public int tope_layout_y = 15;
     public int numero_primero = 0;
-    public int numero_ultimo = 99;
+    public int numero_ultimo;
     public int numero_inferior = numero_primero;
     public int numero_superior = numero_ultimo;
     public int numero_adivinar;
@@ -43,13 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
         total_numeros = (tope_layout_y * tope_layout_x);
         matriz_textViews = new TextView[total_numeros];
+        numero_ultimo = total_numeros - 1;
 
-        double nAle = Math.random()*100;
+        double nAle = Math.random()*tope_layout_x*tope_layout_y;
         numero_adivinar = (int)nAle;
+
+        Empezar();
 
     }
 
-    public void bPulsado(View v) {
+    public void Empezar() {
         //entrada de inicio y numero_ultimo
 
         //deducir la cantidad de numero entre medias con ellos incluidos
@@ -94,7 +92,10 @@ public class MainActivity extends AppCompatActivity {
         if (posi<10) cero = "0"; else cero = "";
         String sNum = cero + posi;
         text.setText(sNum);
-        text.setTextSize(22);
+        if (posi>99)
+            text.setTextSize(15);
+        else
+            text.setTextSize(22);
         text.setGravity(Gravity.START);
         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         //text.setBackgroundColor(colorRed);
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         text.setBackgroundDrawable(drawable);
 
         text.setTextColor(colorYel);
-        text.setPadding(4, 2, 4, 2);
+        text.setPadding(4, 2, 3, 2);
         text.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onTick((TextView)v);

@@ -12,13 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="60"
         android:orientation="vertical"
+        android:gravity="center"
         android:weightSum="100">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:text="Juego del"
+            android:textSize="20dp"
+            android:backgroundTint="@color/colorYellow"
+            android:text="Juego del   "
             android:gravity="center">
         </TextView>
 
@@ -26,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
+            android:textSize="30dp"
             android:text="¡NUMERO ALEATORIO!"
             android:gravity="center">
         </TextView>
@@ -34,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
+            android:textSize="20dp"
             android:text="Tienes que adivinar un número del 0 al 99"
             android:gravity="center">
         </TextView>

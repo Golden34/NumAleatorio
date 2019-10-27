@@ -23,19 +23,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/dyn_button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="bPulsado"
-            android:text="Add TextViews" />
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
         <Button
             android:id="@+id/dyn_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="bPulsado2"
-            android:text="Pulsa 34" />
+            android:text="Volver" />
     </LinearLayout>
 
 
