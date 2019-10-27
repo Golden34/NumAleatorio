@@ -1,7 +1,14 @@
 package com.example.numaleatorio;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -105,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
         text.setGravity(Gravity.START);
         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         text.setBackgroundColor(colorRed);
+
+
+        Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.redon, null);
+        text.setBackgroundDrawable(drawable);
+
+
         text.setTextColor(colorYel);
         text.setPadding(2, 2, 2, 2);
         text.setOnClickListener(new View.OnClickListener() {
