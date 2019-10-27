@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public int colorYel;
     public int intentos;
     public TextView tvIntentos;
+    public boolean acertado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,33 +127,32 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onTick(TextView Caja_Tocada){
+    public void onTick(TextView Caja_Tocada) {
         String sNumero_tocado = Caja_Tocada.getText().toString();
 
+        if (!acertado) {
+            intentos++;
+            tvIntentos.setText(String.valueOf("Intentos: " + intentos));
+        }
         int numero_tocado = Integer.parseInt(sNumero_tocado);
-
-        if (numero_tocado == numero_adivinar){
-            Toast.makeText(this,"Has acertado el numero: " + sNumero_tocado, Toast.LENGTH_SHORT).show();
+        if (numero_tocado == numero_adivinar) {
+            Toast.makeText(this, "Has acertado el numero: " + sNumero_tocado, Toast.LENGTH_SHORT).show();
             // Quita todas las cajas excepto el numero ACERTADO!!
             numero_inferior = numero_tocado;
             numero_superior = numero_tocado;
-        }
-        else if (numero_tocado < numero_adivinar){
+            acertado = true;
+        } else if (numero_tocado < numero_adivinar) {
             // Calcula el nuevo tope/limite inferior y le suma
             // (+) 1 porque ese numero le ha fallado y ya no vale,
             // por eso se excluye del tope inferior, sumando uno.
             numero_inferior = numero_tocado + 1;
-            intentos++;
-        }
-        else if (numero_tocado > numero_adivinar){
+        } else if (numero_tocado > numero_adivinar) {
             // Calcula el nuevo tope/limite superior y le resta
             // (-) 1 porque ese numero le ha fallado y ya no vale,
             // por eso se excluye del tope superior, restando uno.
             numero_superior = numero_tocado - 1;
-            intentos++;
         }
         OcultarCajasSobrantes();
-        tvIntentos.setText(String.valueOf("Intentos: " + intentos));
     }
 
     public void OcultarCajasSobrantes(){
