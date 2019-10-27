@@ -3,6 +3,7 @@ package com.example.numaleatorio;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import static com.example.numaleatorio.R.color.colorYellow;
 public class MainActivity extends AppCompatActivity {
 
     public int tope_layout_x = 10;
-    public int tope_layout_y = 15;
+    public int tope_layout_y = 10;
     public int numero_primero = 0;
     public int numero_ultimo;
     public int numero_inferior = numero_primero;
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         text.setBackgroundDrawable(drawable);
 
         text.setTextColor(colorYel);
-        text.setPadding(4, 2, 3, 2);
+        text.setPadding(3, 2, 3, 2);
         text.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onTick((TextView)v);
@@ -119,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
 
     // este View no es el pulsado, por ahora, es la prueba
     public void bPulsado2(View view) {
-        OcultarCajasSobrantes();
+        // Ir a la actividad via Intent
+        Intent intent = new Intent(this, PresentaActivity.class);
+        startActivity(intent);
     }
 
     public void onTick(TextView Caja_Tocada){

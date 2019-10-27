@@ -15,25 +15,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/xml_layout"
             android:orientation="vertical">
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/xml_layout"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/dyn_button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="bPulsado2"
+                    android:text="Volver" />
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/dyn_button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="bPulsado2"
-            android:text="Volver" />
-    </LinearLayout>
 
 
-    </LinearLayout>
+
+</LinearLayout>
 
