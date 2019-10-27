@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public int numero_ultimo = 99;
     public int numero_inferior = numero_primero;
     public int numero_superior = numero_ultimo;
-    public int numero_adivinar = 57;
+    public int numero_adivinar;
     public TextView matriz_textViews[];
     public int total_numeros;
     int colorRed;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public void bPulsado(View v) {
         //entrada de inicio y numero_ultimo
 
-        //deducir la cantida de numero entre medias con ellos incluidos
+        //deducir la cantidad de numero entre medias con ellos incluidos
         int dif = numero_ultimo - numero_primero;  // 72 - 34 = 38
         int r = dif%7;
         int z = numero_primero;
@@ -67,15 +68,28 @@ public class MainActivity extends AppCompatActivity {
     public LinearLayout GeneraLinearLayout(int Orientacion){
         LinearLayout LL = new LinearLayout(this);
         LL.setOrientation(Orientacion);
-        if (Orientacion == LinearLayout.HORIZONTAL ){
-            LL.setLayoutParams(new LinearLayout.LayoutParams(
+        if (Orientacion == LinearLayout.HORIZONTAL ){new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 0F);
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 3F));
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F);
+            lp.setMargins(10, 10, 10, 10);
+            LL.setLayoutParams(lp);
+
+
+//            LL.setLayoutParams(new LinearLayout.LayoutParams(
+//                    LinearLayout.LayoutParams.WRAP_CONTENT,
+//                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F));
+
+            //LL.setLayoutParams(new ViewGroup.MarginLayoutParams(this,"d"));
+
         }
         else{
             LL.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 2F));
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F));
         }
         return LL;
     }
