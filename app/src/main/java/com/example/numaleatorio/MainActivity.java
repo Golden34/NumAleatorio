@@ -73,31 +73,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public LinearLayout GeneraLinearLayout(int Orientacion){
-        LinearLayout LL = new LinearLayout(this);
-        LL.setOrientation(Orientacion);
-        if (Orientacion == LinearLayout.HORIZONTAL ){new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams
+                lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, 0F);
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F);
-            lp.setMargins(10, 10, 10, 10);
+        LinearLayout LL = new LinearLayout(this);
+        LL.setOrientation(Orientacion);
+        if (Orientacion == LinearLayout.HORIZONTAL ){
+            lp.setMargins(15, 7, 15, 7);
             LL.setLayoutParams(lp);
-
-
-//            LL.setLayoutParams(new LinearLayout.LayoutParams(
-//                    LinearLayout.LayoutParams.WRAP_CONTENT,
-//                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F));
-
-            //LL.setLayoutParams(new ViewGroup.MarginLayoutParams(this,"d"));
-
         }
-        else{
-            LL.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 0F));
-        }
+        LL.setLayoutParams(lp);
         return LL;
     }
 
@@ -111,16 +97,14 @@ public class MainActivity extends AppCompatActivity {
         text.setTextSize(22);
         text.setGravity(Gravity.START);
         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        text.setBackgroundColor(colorRed);
-
+        //text.setBackgroundColor(colorRed);
 
         Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.redon, null);
         text.setBackgroundDrawable(drawable);
 
-
         text.setTextColor(colorYel);
-        text.setPadding(2, 2, 2, 2);
+        text.setPadding(4, 2, 4, 2);
         text.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onTick((TextView)v);
