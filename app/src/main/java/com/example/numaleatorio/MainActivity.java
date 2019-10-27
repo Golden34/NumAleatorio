@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     public int numero_adivinar;
     public TextView matriz_textViews[];
     public int total_numeros;
-    int colorRed;
-    int colorYel;
+    public int colorRed;
+    public int colorYel;
+    public int intentos;
+    public TextView tvIntentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,12 @@ public class MainActivity extends AppCompatActivity {
         numero_ultimo = total_numeros - 1;
         numero_inferior = numero_primero;
         numero_superior = numero_ultimo;
+        intentos = 0;
 
         double nAle = Math.random()*tope_layout_x*tope_layout_y;
         numero_adivinar = (int)nAle;
+
+        tvIntentos = findViewById(R.id.intentos);
 
         Empezar();
 
@@ -53,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void Empezar() {
         //entrada de inicio y numero_ultimo
-
 
         LinearLayout Layout_XML = findViewById(R.id.xml_layout);
         Layout_XML.setPadding(10, 10, 10, 10);
@@ -115,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
-    // este View no es el pulsado, por ahora, es la prueba
-    public void bPulsado2(View view) {
+    // este View no importa
+    public void bVolver(View view) {
         // Ir a la actividad via Intent
         Intent intent = new Intent(this, PresentaActivity.class);
         startActivity(intent);
@@ -132,22 +136,23 @@ public class MainActivity extends AppCompatActivity {
             // Quita todas las cajas excepto el numero ACERTADO!!
             numero_inferior = numero_tocado;
             numero_superior = numero_tocado;
-            OcultarCajasSobrantes();
         }
         else if (numero_tocado < numero_adivinar){
             // Calcula el nuevo tope/limite inferior y le suma
             // (+) 1 porque ese numero le ha fallado y ya no vale,
             // por eso se excluye del tope inferior, sumando uno.
             numero_inferior = numero_tocado + 1;
-            OcultarCajasSobrantes();
+            intentos++;
         }
         else if (numero_tocado > numero_adivinar){
             // Calcula el nuevo tope/limite superior y le resta
             // (-) 1 porque ese numero le ha fallado y ya no vale,
             // por eso se excluye del tope superior, restando uno.
             numero_superior = numero_tocado - 1;
-            OcultarCajasSobrantes();
+            intentos++;
         }
+        OcultarCajasSobrantes();
+        tvIntentos.setText(String.valueOf("Intentos: " + intentos));
     }
 
     public void OcultarCajasSobrantes(){
@@ -161,10 +166,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    /*
-        En el Onclick tiene que ver si ha acertado:
-        Si sí ha acertado -->  intent Festejos
-        Si no ha acertado -->  solo tiene que ocultar desde el numero_primero o el numero_ultimo
-        hacia el numero que ha dicho dejando en la otra parte el numero a adivinar
-     */
 }
