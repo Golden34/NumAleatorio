@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     public int tope_layout_x = 10;
     public int tope_layout_y = 10;
-    public int numero_primero = 0;
+    public int numero_primero;
     public int numero_ultimo;
-    public int numero_inferior = numero_primero;
-    public int numero_superior = numero_ultimo;
+    public int numero_inferior;
+    public int numero_superior;
     public int numero_adivinar;
     public TextView matriz_textViews[];
     public int total_numeros;
@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         total_numeros = (tope_layout_y * tope_layout_x);
         matriz_textViews = new TextView[total_numeros];
+        numero_primero = 0;
         numero_ultimo = total_numeros - 1;
+        numero_inferior = numero_primero;
+        numero_superior = numero_ultimo;
 
         double nAle = Math.random()*tope_layout_x*tope_layout_y;
         numero_adivinar = (int)nAle;
@@ -51,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
     public void Empezar() {
         //entrada de inicio y numero_ultimo
 
-        //deducir la cantidad de numero entre medias con ellos incluidos
-        int dif = numero_ultimo - numero_primero;  // 72 - 34 = 38
-        int r = dif%7;
-        int z = numero_primero;
 
         LinearLayout Layout_XML = findViewById(R.id.xml_layout);
         Layout_XML.setPadding(10, 10, 10, 10);
@@ -64,11 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout layout_x = GeneraLinearLayout(LinearLayout.HORIZONTAL);
                 layout_x.addView(GeneraCaja(y, x));
                 layout_y.addView(layout_x);
-                z++;
             }
             Layout_XML.addView(layout_y);
         }
-        System.out.println("**** Adding text view " + dif);
     }
 
     public LinearLayout GeneraLinearLayout(int Orientacion){

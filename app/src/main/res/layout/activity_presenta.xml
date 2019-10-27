@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:textSize="20dp"
+            android:textColor="@color/colorBurdeos"
             android:backgroundTint="@color/colorYellow"
             android:text="Juego del   "
             android:gravity="center">
@@ -29,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:textSize="30dp"
+            android:textSize="34dp"
+            android:textColor="@color/colorAccent"
             android:text="¡NUMERO ALEATORIO!"
             android:gravity="center">
         </TextView>
@@ -39,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:textSize="20dp"
-            android:text="Tienes que adivinar un número del 0 al 99"
+            android:textColor="@color/colorBurdeos"
+            android:text="Tienes que adivinar un número del 0 al 99 y se te dará la pista de si es mayor o menor"
             android:gravity="center">
         </TextView>
 
@@ -59,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
+            android:textColor="@color/colorAccent"
             android:onClick="bEmpezar"
             android:text="EMPEZAR!" />
 
