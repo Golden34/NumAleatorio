@@ -56,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
         Empezar();
 
     }
-
+/*
+DisplayMetrics metrics = new DisplayMetrics();
+getWindowManager().getDefaultDisplay().getMetrics(metrics);
+int width = metrics.widthPixels; // ancho absoluto en pixels
+int height = metrics.heightPixels; // alto absoluto en pixels
+ */
     public void Empezar() {
         //entrada de inicio y numero_ultimo
 
