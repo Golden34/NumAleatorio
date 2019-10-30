@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public int intentos;
     public TextView tvIntentos;
     public boolean acertado;
+    public int TamañoTexto15;
+    public int TamañoTexto22;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         tvIntentos = findViewById(R.id.intentos);
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        double ww = metrics.widthPixels; // ancho absoluto en pixels
+
+        TamañoTexto15 = (int)(10 * (ww/1080) + 5);
+        TamañoTexto22 = (int)(17 * (ww/1080) + 5);
         Empezar();
 
     }
@@ -86,7 +95,7 @@ int height = metrics.heightPixels; // alto absoluto en pixels
         LinearLayout LL = new LinearLayout(this);
         LL.setOrientation(Orientacion);
         if (Orientacion == LinearLayout.HORIZONTAL ){
-            lp.setMargins(15, 7, 15, 7);
+            lp.setMargins(5, 5, 5, 5);
             LL.setLayoutParams(lp);
         }
         LL.setLayoutParams(lp);
@@ -101,9 +110,9 @@ int height = metrics.heightPixels; // alto absoluto en pixels
         String sNum = cero + posi;
         text.setText(sNum);
         if (posi>99)
-            text.setTextSize(15);
+            text.setTextSize(TamañoTexto15);
         else
-            text.setTextSize(22);
+            text.setTextSize(TamañoTexto22);
         text.setGravity(Gravity.START);
         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         //text.setBackgroundColor(colorRed);
